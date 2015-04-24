@@ -32,4 +32,7 @@ which require an initialization must be listed explicitly in the list.")
 ;; https://github.com/jwiegley/use-package
 (defun magnetised/init-haml-mode ()
   "Initialize haml-mode"
+  (setq
+    haml-indent-offset 2
+    )
   )

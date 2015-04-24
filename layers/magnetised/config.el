@@ -2,12 +2,20 @@
 ;; and: http://stackoverflow.com/questions/14164292/my-emacs-deletes-trailing-white-space-how-can-i-disable-this-behaviour
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; see: http://stackoverflow.com/questions/6453955/how-do-i-prevent-emacs-from-adding-coding-information-in-the-first-line
-(setq ruby-insert-encoding-magic-comment nil)
+(add-hook 'ruby-tools-mode-hook
+  (lambda ()
+    ;; make "_" a word character
+    ;; https://bitbucket.org/lyro/evil/wiki/Home
+    ;; (modify-syntax-entry ?_ "w")
+    (modify-syntax-entry ?_ "w")
+    ;; hit ctrl-shift-3 to insert an interpolation into a string
+    ;; https://github.com/rejeep/ruby-tools.el#string-interpolation
+    (local-set-key (kbd "C-#") #'ruby-tools-interpolate)
+    ;; Don't put a 'coding ...' line at the top of every file after save
+    (setq-default ruby-insert-encoding-magic-comment nil)
+    ;; disable syntax checking for ruby -- it's just annoying
+    (flycheck-mode -1)
+  ))
 
-;; make "_" a word character
-;; https://bitbucket.org/lyro/evil/wiki/Home
-;; (modify-syntax-entry ?_ "w")
-(add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
-(setq global-hl-line-mode -1)
+;; this should turn of highlighting but I think I'd have to move it somewhere else
+;; (setq global-hl-line-mode -1)

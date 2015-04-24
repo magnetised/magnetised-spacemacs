@@ -21,11 +21,19 @@
      ;; --------------------------------------------------------
      (auto-completion :variables auto-completion-use-tab-instead-of-enter nil)
      (git :variables git-gutter-use-fringe t)
-     markdown
-     javascript
      org
      syntax-checking
      colors
+     ;; languages
+     ;; until I can stop this from inserting a mode line at the top of
+     ;; every file I'm disabling this
+     ruby
+     erlang-elixir
+     javascript
+     markdown
+     go
+     python
+     html
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -163,7 +171,32 @@ layers configuration."
   (custom-set-variables
    '(neo-theme 'ascii)
   )
+  (setq
+   ;; see: http://stackoverflow.com/questions/6453955/how-do-i-prevent-emacs-from-adding-coding-information-in-the-first-line
+
+   )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(neo-theme (quote ascii))
+ '(ring-bell-function (quote ignore) t)
+ '(standard-indent 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#ffffff" :background "#263238"))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
