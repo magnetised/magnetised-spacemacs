@@ -61,3 +61,15 @@
 
 (define-key evil-motion-state-map "L" 'evil-last-non-blank)
 (define-key evil-motion-state-map "H" 'evil-first-non-blank)
+
+
+(define-key evil-normal-state-map
+  (kbd "s-<return>")  (lambda (count)
+          "Insert a new line below with no identation."
+          (interactive "p")
+          (save-excursion
+            (evil-move-end-of-line)
+            (while (> count 0)
+              (insert "\n")
+              (setq count (1- count))))))
+(define-key evil-normal-state-map (kbd "M-s-<return>") 'evil-insert-line-above)
