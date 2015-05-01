@@ -1,6 +1,10 @@
 ;; see:  http://www.emacswiki.org/emacs/DeletingWhitespace
 ;; and: http://stackoverflow.com/questions/14164292/my-emacs-deletes-trailing-white-space-how-can-i-disable-this-behaviour
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook (lambda ()
+    ;; markdown needs to be able to add two spaces at the end of a line
+    ;; for <br>s so turn off the whitespace removal
+    (when (not (eq major-mode 'markdown-mode))
+        (delete-trailing-whitespace))))
 
 (add-hook 'ruby-tools-mode-hook
   (lambda ()
