@@ -24,6 +24,7 @@
      org
      syntax-checking
      colors
+     dash
      ;; languages
      ;; until I can stop this from inserting a mode line at the top of
      ;; every file I'm disabling this
