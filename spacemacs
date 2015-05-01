@@ -159,6 +159,11 @@ before layers configuration."
    ;; http://stackoverflow.com/questions/4076360/error-in-dired-sorting-on-os-x
    ;; brew install coreutils
    insert-directory-program "gls"
+
+   ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Maintaining-Undo.html
+   undo-limit 800000
+   undo-strong-limit 1200000
+   undo-outer-limit 1200000
    )
   ;; User initialization goes here
   )
