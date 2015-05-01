@@ -155,6 +155,10 @@ before layers configuration."
    ;; git-gutter-fr:side 'left-fringe
    ruby-version-manager 'rvm
    ruby-enable-ruby-on-rails-support t
+   ;; replace `ls` with `gls` to fix error with dired mode
+   ;; http://stackoverflow.com/questions/4076360/error-in-dired-sorting-on-os-x
+   ;; brew install coreutils
+   insert-directory-program "gls"
    )
   ;; User initialization goes here
   )
