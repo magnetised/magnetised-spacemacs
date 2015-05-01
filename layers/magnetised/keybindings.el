@@ -3,9 +3,17 @@
 
 (add-hook 'find-file-hook (lambda () (setq buffer-save-without-query t)))
 
-(define-key evil-normal-state-map (kbd "RET") 'save-some-buffers)
+(define-key evil-normal-state-map (kbd "RET") 'evil-write-all)
 (define-key evil-normal-state-map (kbd "C-s-k") 'move-text-up)
 (define-key evil-normal-state-map (kbd "C-s-j") 'move-text-down)
+(define-key evil-normal-state-map (kbd "s-a") 'mark-whole-buffer)
+
+;; make home and end move to the beginning & end of the file respectively
+;; rather than the beginning & end of the current line
+(define-key evil-normal-state-map (kbd "<home>") 'evil-goto-first-line)
+(define-key evil-normal-state-map (kbd "<end>") 'evil-goto-line)
+(define-key evil-insert-state-map (kbd "<home>") 'evil-goto-first-line)
+(define-key evil-insert-state-map (kbd "<end>") 'evil-goto-line)
 
 ;; Maps to simulate the best parts of Sublime
 
@@ -73,3 +81,21 @@
               (insert "\n")
               (setq count (1- count))))))
 (define-key evil-normal-state-map (kbd "M-s-<return>") 'evil-insert-line-above)
+
+;; in insert mode want cmd-return to insert a line & goto that line without
+;; breaking the current line
+;; breaking the current line
+(define-key evil-insert-state-map (kbd "s-<return>") (lambda (count)
+  "Insert a new line below with no identation."
+  (interactive "p")
+  (evil-move-end-of-line)
+  (while (> count 0)
+    (insert "\n")
+    (when evil-auto-indent
+      (indent-according-to-mode))
+    (setq count (1- count)))))
+
+(define-key evil-insert-state-map (kbd "M-s-<return>") 'evil-insert-line-above)
+
+
+
