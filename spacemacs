@@ -181,8 +181,7 @@ layers configuration."
   (custom-set-variables
    '(neo-theme 'ascii)
   )
-  (setq
-   ;; see: http://stackoverflow.com/questions/6453955/how-do-i-prevent-emacs-from-adding-coding-information-in-the-first-line
+  (setq-default
 
    )
 )
